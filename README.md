@@ -7,10 +7,15 @@ This project was deployed on Heroku: [Coding Challenge](https://nine-code-challe
 ## Usage
 
 Just clone the code and use it. It is in pure python 3.
+A request payload is posted to the API in JSON format. The JSON data include some fields and some nested dictionary fields. JSON data is filtered based on DRM enabled and episodeCount > 0. The returned JSON contains the following field from the request:
+
+- image - corresponding to image/showImage from the request payload
+- slug
+- title
 
 ## How to run the code
 
-- First install virtual environment by this command:
+- First, install virtual environment by this command:
 ``` 
 $ pip install virtualenv
 ```
@@ -31,3 +36,8 @@ $ source env/bin/Activate
 ```
 $ python manage.py runserver
 ```
+
+## Challenge/bugs
+
+Nested serializers were the main challenge in this project.
+The season field is a list of one or more dictionaries. This field doesn't work properly in this project.
