@@ -23,5 +23,5 @@ def app(request):
                 })
         return Response({"response": response}, status=status.HTTP_200_OK)
     else:
-        return Response(serializer.errors, #{"error": "Could not decode request: JSON parsing failed"}, 
+        return Response({"error": "Could not decode request: JSON parsing failed"}, 
         status=status.HTTP_400_BAD_REQUEST)
