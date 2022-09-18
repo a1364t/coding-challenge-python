@@ -17,9 +17,9 @@ def app(request):
             episodeCount = payload.get('episodeCount', None)
             if drm and episodeCount > 0:
                 response.append({
-                    "image": payload["image"]["showImage"],
-                    "slug": payload["slug"],
-                    "title": payload["title"]
+                    "image":payload["image"]["showImage"],
+                    "slug":payload["slug"],
+                    "title":payload["title"]
                 })
         return Response({"response": response}, status=status.HTTP_200_OK)
     else:
