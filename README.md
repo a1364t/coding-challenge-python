@@ -6,8 +6,7 @@ This project was deployed on Heroku: [Coding Challenge](https://nine-code-challe
 
 ## Usage
 
-Just clone the code and use it.
-It is in pure python 3.
+Just clone the code and use it. It is in pure python 3.
 
 ## How to run the code
 
