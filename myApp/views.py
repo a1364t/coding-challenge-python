@@ -8,13 +8,20 @@ from .serializers import AppSerializer
 
 @api_view(['POST'])
 def app(request):
-    ser = AppSerializer(data=request.data)
-    results = {}
-    if ser.is_valid():
-        payload = list(ser.data['payload'])
-        for i in payload:
-            results.setdefault(i)
-            return Response({"response": results}, status=status.HTTP_200_OK)
+    serializer = AppSerializer(data=request.data)
+    if serializer.is_valid():
+        response = list()
+        payloads = serializer.data['payload']
+        for payload in payloads:
+            drm = payload.get('drm', None)
+            episodeCount = payload.get('episodeCount', None)
+            if drm and episodeCount > 0:
+                response.append({
+                    "image": payload["image"]["showImage"],
+                    "slug": payload["slug"],
+                    "title": payload["title"]
+                })
+        return Response({"response": response}, status=status.HTTP_200_OK)
     else:
-        return Response(ser.errors, #{"error": "Could not decode request: JSON parsing failed"}, 
+        return Response(serializer.errors, #{"error": "Could not decode request: JSON parsing failed"}, 
         status=status.HTTP_400_BAD_REQUEST)
